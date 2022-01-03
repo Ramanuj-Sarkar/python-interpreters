@@ -1,4 +1,4 @@
-def run_6ix(method="input"):
+def run_sixix(method="input"):
     # puts input into code
     code = []
     if method == "input":
