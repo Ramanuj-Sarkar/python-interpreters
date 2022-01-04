@@ -1,3 +1,4 @@
+# https://esolangs.org/wiki/2Deadfish
 def run_2deadfish(code_string: str, file_name=False):
     # This is the code itself.
     code = []
