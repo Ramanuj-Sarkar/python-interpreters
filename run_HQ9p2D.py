@@ -1,4 +1,5 @@
 # runs HQ9+2D
+# https://esolangs.org/wiki/HQ9%2B2D
 # if using a textfile, include the file extension
 def run_HQ9p2D(code_string: str, textfile = False):
     code = []
