@@ -7,16 +7,15 @@ def run_bf(code: str, textfile = False) -> None:
     if textfile:
         code = ''.join(open(f'{code}', 'r').readlines())
 
-    corresponding_right_bracket = {}       # dictionary where keys are left brackets and values are right brackets
-    corresponding_left_bracket = {}  # dictionary where keys are right brackets and values are left brackets
+    corresponding_bracket = {}       # dictionary where the values are the corresponding bracket positions of the keys
     bracket_stack = []     # acts as a stack for the last bracket
     for num, char in enumerate(code):
         if char == '[':
             bracket_stack.append(num)
         elif char == ']':
             assert len(bracket_stack) > 0, 'unmatched ]'
-            corresponding_left_bracket[num] = bracket_stack[-1]
-            corresponding_right_bracket[bracket_stack[-1]] = num
+            corresponding_bracket[num] = bracket_stack[-1]
+            corresponding_bracket[bracket_stack[-1]] = num
             bracket_stack.pop()
     assert len(bracket_stack) == 0, 'unmatched ['
 
@@ -46,8 +45,8 @@ def run_bf(code: str, textfile = False) -> None:
             input_string = input_string[1:]
         elif code[pointer] == '[':
             if tape[location] == 0:
-                pointer = corresponding_right_bracket[pointer]
+                pointer = corresponding_bracket[pointer]
         elif code[pointer] == ']':
             if tape[location] != 0:
-                pointer = corresponding_left_bracket[pointer]
+                pointer = corresponding_bracket[pointer]
         pointer += 1
