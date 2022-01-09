@@ -1,8 +1,38 @@
-def run_ttttt(data: str) -> None:
+def run_ttttt(data: str, textfile=False) -> None:
     code = list(data)
+
+    if textfile:
+        code = ''.join(open(f'{code}', 'r').readlines())
+
     variables = [0, 0, 0]
-    pointer = 0
-    which_var = 0
+    pointer = 0     # this is for code
+    which_var = 0   # this is for data
+    input_string = ''  # allows multiple inputs to happen easily
+
+    corresponding_thing = {}  # dictionary for the corresponding beginning/ending things
+    loop_stack = []  # acts as a stack for the last loop
+    comment_stack = []  # acts as a stack for the last comment
+    in_comment = False
+    for num, char in enumerate(code):
+        if char == 'k':
+            in_comment = True
+            comment_stack.append(num)
+        elif char == 'l':
+            assert len(comment_stack) > 0, 'unmatched l'
+            corresponding_thing[num] = comment_stack[-1]
+            corresponding_thing[comment_stack[-1]] = num
+            comment_stack.pop()
+            in_comment = False
+        elif not in_comment:
+            if char == 'i':
+                loop_stack.append(num)
+            elif char == 'j':
+                assert len(loop_stack) > 0, 'unmatched j'
+                corresponding_thing[num] = loop_stack[-1]
+                corresponding_thing[loop_stack[-1]] = num
+                loop_stack.pop()
+    assert len(loop_stack) == 0, 'unmatched i'
+    assert len(comment_stack) == 0, 'unmatched k'
 
     while pointer < len(code):
         if 'a' == code[pointer]:
@@ -25,32 +55,18 @@ def run_ttttt(data: str) -> None:
         elif 'g' == code[pointer]:
             print("\n", end="")
         elif 'h' == code[pointer]:
-            variables[which_var] = ord(input())
+            if input_string == '':
+                input_string = input(">>")
+            if len(input_string) > 0:
+                variables[which_var] = ord(input_string[0])
+            else:
+                variables[which_var] = 10
         elif 'i' == code[pointer]:
             if variables[which_var] == 0:
-                nest_counter = 0
-                while code[pointer] != 'j' or nest_counter >= 0:
-                    pointer += 1
-                    if code[pointer] == 'i':
-                        nest_counter += 1
-                    elif code[pointer] == 'j':
-                        nest_counter -= 1
-                    elif code[pointer] == 'k':
-                        pointer += code[pointer:].index('l')
+                pointer = corresponding_thing[pointer]
         elif 'j' == code[pointer]:
             if variables[which_var] != 0:
-                nest_counter = 0
-                while code[pointer] != 'i' or nest_counter >= 0:
-                    pointer -= 1
-                    if code[pointer] == 'j':
-                        nest_counter += 1
-                    elif code[pointer] == 'i':
-                        nest_counter -= 1
-                    elif code[pointer] == 'l':
-                        while code[pointer] != 'k':
-                            pointer -= 1
-                pointer -= 1
+                pointer = corresponding_thing[pointer]
         elif 'k' == code[pointer]:
-            pointer += code[pointer:].index('l')
+            pointer = corresponding_thing[pointer]
         pointer += 1
-    print(variables)
