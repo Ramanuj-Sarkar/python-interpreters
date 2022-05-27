@@ -5,14 +5,16 @@ def run_lenny(code: str, actually_run = False) -> None:
     tape = [[0]]
     input_string = chr(10)  # allows multiple inputs easily
 
-    # checks balance
-    balance = 0
-    for char in code:
-        if char == '( ͡°(':
-            balance += 1
-        elif char == ']':
-            balance -= 1
-        assert balance >= 0, 'unmatched ) ͡°)'
+    corresponding_bracket = {}       # dictionary where the values are the corresponding bracket positions of the keys
+    bracket_stack = []     # acts as a stack for the last bracket
+    for num in range(len(code)):
+        if code[num:num+5] == '( ͡°(':
+            bracket_stack.append(num)
+        elif code[num:num+5] == ') ͡°)':
+            assert len(bracket_stack) > 0, 'unmatched ) ͡°)'
+            corresponding_bracket[num] = bracket_stack[-1]
+            corresponding_bracket[bracket_stack[-1]] = num
+            bracket_stack.pop()
     assert balance == 0, 'unmatched ( ͡°('
 
     while pointer < len(code):
@@ -58,23 +60,12 @@ def run_lenny(code: str, actually_run = False) -> None:
             input_string = input_string[1:]
             skip = 13
         elif code[pointer:pointer+5] == '( ͡°(':
-            if tape[row][column] == 0:
-                nest_counter = 0
-                while code[pointer:pointer+5] != ') ͡°)' or nest_counter >= 0:
-                    pointer += 1
-                    if code[pointer:pointer+5] == '( ͡°(':
-                        nest_counter += 1
-                    elif code[pointer:pointer+5] == ') ͡°)':
-                        nest_counter -= 1
+            if tape[location] == 0:
+                pointer = corresponding_bracket[pointer]
+            skip = 5
         elif code[pointer:pointer+5] == ') ͡°)':
-            if tape[row][column] != 0:
-                nest_counter = 0
-                while code[pointer:pointer+5] != '( ͡°(' or nest_counter >= 0:
-                    pointer -= 1
-                    if code[pointer:pointer+5] == ') ͡°)':
-                        nest_counter += 1
-                    elif code[pointer:pointer+5] == '( ͡°(':
-                        nest_counter -= 1
+            if tape[location] == 0:
+                pointer = corresponding_bracket[pointer]
         elif code[pointer:pointer+3] == 'ಠ_ಠ':
             break
         pointer += skip
