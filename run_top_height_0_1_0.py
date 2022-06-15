@@ -1,4 +1,4 @@
-def run_top_height(code_string: str, text_file = False) -> None:
+def run_top_height_0_1_0(code_string: str, text_file = False) -> None:
     stack = [0]
     code = []
 
@@ -27,7 +27,7 @@ def run_top_height(code_string: str, text_file = False) -> None:
                 stack.append(ord(instruction))
 
             # move down one space
-            elif ':' == instruction:
+            elif instruction == ':':
                 stack.append(stack[-1])
 
             # arithmetic instructions
@@ -70,7 +70,7 @@ def run_top_height(code_string: str, text_file = False) -> None:
                     print(chr(abs(new)),end='')
 
             elif '~' == instruction:
-                new = input()[0]
+                new = input('>>')[0]
                 if new.isdigit():
                     stack.append(int(new))
                 else:
