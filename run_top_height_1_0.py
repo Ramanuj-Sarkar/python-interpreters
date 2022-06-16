@@ -49,8 +49,9 @@ def run_top_height_1_0(code_string: str, text_file = True) -> None:
                         stack.append(a)
                         stack.append(b)
                     elif '^' == instruction:
-                        c = stack[-1*(a+1)]
-                        stack[-1*(a+1)] = b
+                        anum = (-(a+1) if a+1 < len(stack) else 0)
+                        c = stack[anum]
+                        stack[anum] = b
                         stack.append(c)
                     else:
                         if b == 0:
@@ -80,3 +81,7 @@ def run_top_height_1_0(code_string: str, text_file = True) -> None:
                 break
         else:
             break
+
+
+if __name__ == '__main__':
+    run_top_height_1_0('~\n2:\n..\\', False)
