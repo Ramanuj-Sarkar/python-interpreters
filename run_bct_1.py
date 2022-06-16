@@ -3,7 +3,7 @@
 # and data data
 # hit enter after each line
 # or input something to stop the program
-def run_bct(program: str, data: str) -> None:
+def run_bct_1(program: str, data: str) -> None:
     # Will not operate on strings which contain non-bits
     for bit in program:
         if bit not in "01":
