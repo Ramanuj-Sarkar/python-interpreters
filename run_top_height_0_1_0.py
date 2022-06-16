@@ -76,3 +76,7 @@ def run_top_height(code_string: str, text_file = False) -> None:
                 break
         else:
             break
+
+
+if __name__ == '__main__':
+    run_top_height_0_1_0('~\n2:\n..\\', False)
