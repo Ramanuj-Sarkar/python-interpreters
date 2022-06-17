@@ -59,8 +59,7 @@ def run_ttttt(data: str, textfile=False) -> None:
                 input_string = input(">>")
             if len(input_string) > 0:
                 variables[which_var] = ord(input_string[0])
-            else:
-                variables[which_var] = 10
+                input_string = input_string[1:]
         elif 'i' == code[pointer]:
             if variables[which_var] == 0:
                 pointer = corresponding_thing[pointer]
