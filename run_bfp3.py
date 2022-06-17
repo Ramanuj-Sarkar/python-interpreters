@@ -55,8 +55,6 @@ def run_bfp3(code: str, textfile=False) -> None:
                 input_string = input(">>")
             if len(input_string) > 0:
                 tape[row][column] = ord(input_string[0])
-            else:
-                tape[row][column] = 10  # the only way to convey input is with a newline
             input_string = input_string[1:]
         elif code[pointer] == '[':
             if tape[row][column] == 0:
