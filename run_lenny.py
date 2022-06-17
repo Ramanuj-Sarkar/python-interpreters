@@ -3,7 +3,7 @@ def run_lenny(code: str, actually_run = False) -> None:
     row = 0     # for up and down tape
     column = 0  # for left and right tape
     tape = [[0]]
-    input_string = chr(10)  # allows multiple inputs easily
+    input_string = ''  # allows multiple inputs easily
 
     corresponding_bracket = {}       # dictionary where the values are the corresponding bracket positions of the keys
     bracket_stack = []     # acts as a stack for the last bracket
@@ -53,11 +53,11 @@ def run_lenny(code: str, actually_run = False) -> None:
             print(chr(tape[row][column]),end='')
             skip = 7
         elif code[pointer:pointer+13] == 'ᕙ( ͡° ͜ʖ ͡°)ᕗ':
-            if input_string == chr(10):
-                input_string = input(">>") + chr(10)
-            if len(input_string) > 0 and ord(input_string[0]) != chr(10):
+            if input_string == '':
+                input_string = input(">>")
+            if len(input_string) > 0:
                 tape[row][column] = ord(input_string[0])
-            input_string = input_string[1:]
+                input_string = input_string[1:]
             skip = 13
         elif code[pointer:pointer+5] == '( ͡°(':
             if tape[location] == 0:
