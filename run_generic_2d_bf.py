@@ -4,7 +4,7 @@ def run_generic_2d_bf(code_string: str, textfile = False) -> None:
     column = 0  # for left and right tape
     direction = 'r'  # for direction
     tape = [[0]]
-    input_string = chr(10)  # allows multiple inputs easily
+    input_string = ''  # allows multiple inputs easily
     nest_counter = 0    # allows code with nested parentheses to work
 
     # this checks if the code is in a loop and what caused the loop
@@ -65,13 +65,13 @@ def run_generic_2d_bf(code_string: str, textfile = False) -> None:
                 elif char == '.':
                     print(chr(tape[row][column]),end='')
                 elif char == ',':
-                    if input_string == chr(10):
-                        input_string = input(">>") + chr(10)
-                    # the following thing has to make sure
+                    if input_string == '':
+                        input_string = input(">>")
+                    # the following thing is when
                     # the input isn't an empty string
-                    if len(input_string) > 0 and ord(input_string[0]) != chr(10):
+                    if len(input_string) > 0:
                         tape[row][column] = ord(input_string[0])
-                    input_string = input_string[1:]
+                        input_string = input_string[1:]
                 elif char in '[':
                     if tape[row][column] == 0:
                         loop_maker = '['
