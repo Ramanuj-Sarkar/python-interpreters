@@ -39,8 +39,6 @@ def run_bf(code: str, textfile=False) -> None:
             if len(input_string) > 0:
                 tape[location] = ord(input_string[0])
                 input_string = input_string[1:]
-            else:
-                tape[location] = 10
         elif code[pointer] == '[':
             if tape[location] == 0:
                 pointer = corresponding_bracket[pointer]
