@@ -1,3 +1,4 @@
+# runs language under CT from https://esolangs.org/wiki/Bitwise_Cyclic_Tag
 def run_ct(program: str, data: str) -> None:
     # Will not operate on strings which contain non-bits
     assert set(program).issubset({'0', '1', ';'}),\
