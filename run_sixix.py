@@ -1,3 +1,5 @@
+# runs language which can be found here:
+# https://esolangs.org/wiki/6ix
 def run_sixix(method="input"):
     # puts input into code
     code = []
