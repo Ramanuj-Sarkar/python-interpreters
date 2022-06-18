@@ -1,3 +1,5 @@
+# runs Version 0.1.0 of (top, height) from this page
+# https://esolangs.org/wiki/(top,_height)
 def run_top_height(code_string: str, text_file = False) -> None:
     stack = [0]
     code = []
@@ -11,7 +13,7 @@ def run_top_height(code_string: str, text_file = False) -> None:
 
     while len(stack) > 0:
 
-        # The pointer's next position is always x_coord, y_coord.
+        # The pointer's next position is always (x_coord, y_coord).
         x_coord = abs(stack[-1])
         y_coord = len(stack)-1
 
