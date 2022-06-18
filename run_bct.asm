@@ -7,8 +7,8 @@ new_line: .asciiz "\n"
 error_message: .asciiz "You can only have 0 or 1 in the program and data."
 data_space: .space 64
 
-program: .asciiz "0"
-data: .asciiz "1111111111111111111111"
+program: .asciiz "00111"
+data: .asciiz "101"
 
 .text
 
@@ -61,13 +61,13 @@ li $v0, 4
 syscall
 addi $t0, $t0, 1
 li $v0, 11
-start_space_printing:
+start_zero_space_printing:
 lb $a0, ($t1)
-bne $a0, 32, end_space_printing
+bne $a0, 32, end_zero_space_printing
 syscall
 addi $t1, $t1, 1
-j start_space_printing
-end_space_printing:
+j start_zero_space_printing
+end_zero_space_printing:
 li $a0, 32
 syscall
 beq $t1, $s1, end_cyclic_loop
@@ -96,10 +96,19 @@ la $a0, one_one_string
 li $v0, 4
 syscall
 rest_of_one:
-addi $s1, $s1, 1
-sb $t2, ($s1)
 addi $t0, $t0, 1
 li $v0, 11
+start_one_space_printing:
+lb $a0, ($t1)
+bne $a0, 32, end_one_space_printing
+syscall
+addi $t1, $t1, 1
+j start_one_space_printing
+end_one_space_printing:
+lb $t3, ($t1)
+bne $t3, 49, start_one_printing
+addi $s1, $s1, 1
+sb $t2, ($s1)
 start_one_printing:
 lb $a0, ($t1)
 syscall
