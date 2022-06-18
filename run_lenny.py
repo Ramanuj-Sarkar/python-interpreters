@@ -1,3 +1,4 @@
+# runs language from https://esolangs.org/wiki/(_%CD%A1%C2%B0_%CD%9C%CA%96_%CD%A1%C2%B0)fuck
 def run_lenny(code: str, actually_run = False) -> None:
     pointer = 0  # for instructions
     row = 0     # for up and down tape
