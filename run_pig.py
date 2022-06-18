@@ -1,3 +1,4 @@
+# runs language from https://esolangs.org/wiki/Pig
 def run_pig(code):
     assert type(code) is str, 'ERROR: Code must be a string.'
     assert 'PIG' in code, 'ERROR: Code must contain "PIG".'
