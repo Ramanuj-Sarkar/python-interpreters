@@ -1,3 +1,4 @@
+# runs language from https://esolangs.org/wiki/Generic_2D_Brainfuck
 def run_generic_2d_bf(code_string: str, textfile = False) -> None:
     pointer = (0, 0)  # for instructions
     row = 0     # for up and down tape
