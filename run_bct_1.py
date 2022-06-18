@@ -1,4 +1,4 @@
-# runs Bitwise Cyclic Tag
+# runs Bitwise Cyclic Tag from https://esolangs.org/wiki/Bitwise_Cyclic_Tag
 # using program program
 # and data data
 # hit enter after each line
