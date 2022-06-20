@@ -23,7 +23,7 @@ sw $s1, 4($sp) # end of number
 sw $s2, 8($sp) # end of possible stretching
 move $s0, $a0
 la $s1, data_space
-add $s2, $s1, 64
+add $s2, $s1, 63
 start_data_shift_loop:
 lb $t0, ($a1)
 beqz $t0, end_data_shift_loop
