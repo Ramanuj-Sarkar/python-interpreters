@@ -1,3 +1,4 @@
+# This is based on the language on this page:
 # https://esolangs.org/wiki/2Deadfish
 def run_2deadfish(code_string: str, file_name=False):
     # This is the code itself.
@@ -20,11 +21,11 @@ def run_2deadfish(code_string: str, file_name=False):
     max_line = max([len(line) for line in code])
 
     pointer = (0, 0)
-    # This is the actual counter.
+    
+    # This is incremented.
     counter = 0
+    
     # The direction is equal to direction * 90 degrees counterclockwise from right.
-    # I couldn't make math.sin and math.cos work with this, even using radians.
-    # It would say int(math.cos(radians(270))) was -1
     direction = 0
     while -1 < pointer[0] < len(code) and -1 < pointer[1] < max_line:
         row = pointer[0]
@@ -43,7 +44,7 @@ def run_2deadfish(code_string: str, file_name=False):
                 direction += 2
             elif instruction == 'd':
                 counter -= 1
-                direction += 3
+                direction -= 1
 
         # 4 * 90 = 360 degrees = 0 degrees
         direction %= 4
