@@ -1,3 +1,5 @@
+# This is an interpreter based on the following programming language:
+# https://esolangs.org/wiki/Ttttt
 def run_ttttt(data: str, textfile=False) -> None:
     code = list(data)
 

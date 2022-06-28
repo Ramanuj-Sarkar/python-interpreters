@@ -1,4 +1,5 @@
-# This is based on a programming language.
+# This is based on the following programming language:
+# https://esolangs.org/wiki/Tttt
 def run_tttt(data: str, textfile: False) -> None:
     code = list(data)
 
