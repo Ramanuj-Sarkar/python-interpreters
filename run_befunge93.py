@@ -10,8 +10,6 @@ def run_befunge(code_string: str, file_name: True):
     running = []
 
     # You can use text files
-    # Newline characters don't affect anything
-    # Therefore, the code is different when using or not using a text file
     if file_name:
         for line in open(code_string, 'r'):
             goodline = line.strip('\n')
@@ -94,7 +92,7 @@ def run_befunge(code_string: str, file_name: True):
                 result = b * a
             elif char == '/':
                 if a == 0:
-                    result = 0
+                    result = int(input(f'What do you want {b}/0 to equal?'))
                 else:
                     result = b // a
             elif char == '%':
@@ -131,8 +129,6 @@ def run_befunge(code_string: str, file_name: True):
         else:
             x = (x + 1) % 80
 
-        temp1 = running[y]
-        temp2 = len(temp1)
         char = running[y][x] if y < len(running) and x < len(running[y]) else ' '
 
 
@@ -141,6 +137,5 @@ if __name__ == '__main__':
                 '^,*52.:_ `@#\\"d" :<\n'
                 ' v"Fizz"<        >v\n'
                 ' >,,,,:5%        | \n'
-                '         v"Buzz"<< \n'
-                '         >,,,,v    \n'
-                '^         ,*52<   < ', False)
+                '     v,,,,"Buzz"<< \n'
+                '^,*52<            <', False)
