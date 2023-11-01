@@ -1,4 +1,6 @@
 # runs language from https://esolangs.org/wiki/Brainfuck
+# textfile indicates whether the string is a textfile
+# starting_input indicates what the starting input should be, in case it shouldn't be taken from the text
 def run_bf(code: str, textfile=False, starting_input='') -> None:
     pointer = 0  # for instructions
     location = 0  # for tape
